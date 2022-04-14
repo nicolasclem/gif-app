@@ -1,0 +1,12 @@
+.cardItem{
+    align-content: center;
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin: 8px;
+    overflow: hidden;
+
+}
+
+.cardItem img {
+    align-items: center;
+}

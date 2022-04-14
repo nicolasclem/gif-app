@@ -1,29 +1,35 @@
-import React from 'react'
-
+import React, { useState, useEffect } from 'react'
+import  {getGif } from '../../helpers/getGifs'
+import GifGridItem from '../GifGridItem/GifGridItem'
+import './GifGrid.css'
 const GifGrid = ({category}) => {
 
-    const getGif= async()=>{
-        const url="https://api.giphy.com/v1/gifs/search?q=Rick+and+Morty&limit=10&api_key=L3hACAyqgSDegRMxqz2KL5xijWXvxFPd"
-         const resp = await fetch(url)
-         const{ data} = await resp.json()
 
-         const gifs = data.map(img=>{
-            return{
-                id:img.id,
-                title:img.title,
-                url:img.images.downsized_medium.url
-            }
-         })
+    const [images, setImages] = useState([])
 
-         console.log(gifs);
+    useEffect(()=>{
+      getGif(category).then(setImages)
+    },[category])
 
-    }
+   
 
 
-    getGif()
+   
   return (
-    <div>
-        <h3>{category}</h3>
+    <div className='card-grid'>
+        
+        <ul>
+            {
+                images.map((img) => 
+                   <GifGridItem  
+                   key={img.id}
+                   {...img}
+                   />
+                )
+            }
+           
+        </ul>
+        
     </div>
   )
 }

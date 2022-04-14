@@ -12,10 +12,8 @@ const AddCategory = ({setCategories}) => {
     const handleSubmit =(e)=>{
         e.preventDefault()
         if(inputValue.trim().length >3){
-        setCategories( cats=>[...cats ,inputValue]);
+        setCategories( cats=>[inputValue,...cats ]);
         setInputValue("")
-        }else{
-            console.log("enviar datos");
         }
     }
    
